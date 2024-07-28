@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Map Mitch</title>
+	
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
+    <style>
+		body { margin: 0; padding: 0;}
+		#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+	</style>
+	
+</head>
+<body>
+	<div id='map'></div>
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1Ijoic2FsbWFuMTJoYWlkZXIxMyIsImEiOiJja3U2cWgzeGswMTBsMnduenUxNTU3ODYwIn0.40OiXNhJP2nudlQTl_VL9w';
+
+		// Initialize map
+		const map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/salman12haider13/clz5qp3ps00pm01pceow1e4gu',
+			center: [10.99184170,44.66300003],
+			zoom: 16,
+			minZoom: 1
+		});
+		// Add navigation control
+		map.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
+		map.setRenderWorldCopies(true);
+
+        // Add raster tiles
+        map.on('load', function () {
+            map.addSource('raster-tiles', {
+                'type': 'raster',
+                'url': 'mapbox://salman12haider13.3pq0nbuh',
+                'tileSize': 256
+            });
+
+            map.addLayer({
+                'id': 'raster-layer',
+                'type': 'raster',
+                'source': 'raster-tiles',
+                'paint': {}
+            });
+        });
+	</script>
+</body>
+</html>
